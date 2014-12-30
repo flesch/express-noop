@@ -1,0 +1,26 @@
+{
+  "name": "express-noop",
+  "version": "1.0.0",
+  "description": "Middleware that does nothing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flesch/express-noop"
+  },
+  "keywords": [
+    "noop",
+    "no-op",
+    "middleware",
+    "express",
+    "connect"
+  ],
+  "author": "John Flesch <john@fles.ch> (http://fles.ch/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flesch/express-noop/issues"
+  },
+  "homepage": "https://github.com/flesch/express-noop"
+}
