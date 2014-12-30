@@ -2,6 +2,8 @@
 
 A middleware that does nothing, except execute the `next` middleware. Useful when you want to disable other middleware inside `app.use`.
 
+You'll want to weigh the convenience this module provides with the additional performance implications. 
+
 ## Install
 
 ```bash
@@ -9,6 +11,24 @@ npm install express-noop --save
 ```
 
 ## Usage
+
+Using `noop()` without any arguments immediately executes `next()`.
+
+```javascript
+app.use(app.get('production') ? noop() : delay(1000));
+```
+
+Alternatively, passing `condition` and `middleware` will execute `middleware` if `condition` is `true`, otherwise the `next()` middleware is run.
+
+```javascript
+// app.use(noop([condition], [middleware]));
+// If condition is true, execute middleware, otherwise next();
+app.use(noop(!app.get('production'), delay(1000)));
+```
+
+Both ways do essentially the same thing.
+
+## Example
 
 ```javascript
 var express = require('express');
@@ -19,7 +39,11 @@ var app = express();
 
 app.set('production', process.env.NODE_ENV === 'production');
 
+// Use noop() without arguments.
 app.use(app.get('production') ? noop() : delay(1000));
+
+// Or, wrap a middleware with noop().
+app.use(noop(!app.get('production'), delay(1000)));
 
 app.get('/', function(req, res, next){
   res.send('Hello, world!');
